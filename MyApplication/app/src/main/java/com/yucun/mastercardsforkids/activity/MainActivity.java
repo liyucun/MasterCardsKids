@@ -1,9 +1,11 @@
-package com.yucun.mastercardsforkids;
+package com.yucun.mastercardsforkids.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.yucun.mastercardsforkids.R;
 
 public class MainActivity extends AppCompatActivity {
 
