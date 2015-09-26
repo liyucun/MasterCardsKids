@@ -1,4 +1,4 @@
-package com.yucun.mastercardsforkids.activity;
+package com.yucun.mastercardsforkids;
 
 import android.app.Application;
 
