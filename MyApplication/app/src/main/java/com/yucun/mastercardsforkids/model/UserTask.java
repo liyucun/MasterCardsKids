@@ -9,13 +9,22 @@ public class UserTask {
     private String taskName;
     private String taskDescription;
     private Image taskIcon;
-
+    private boolean status=false;
     public String getTaskName() {
         return taskName;
     }
 
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
     public void setTaskName(String taskName) {
         this.taskName = taskName;
+
     }
 
     public String getTaskDescription() {
@@ -40,6 +49,7 @@ public class UserTask {
                 "taskName='" + taskName + '\'' +
                 ", taskDescription='" + taskDescription + '\'' +
                 ", taskIcon=" + taskIcon +
+                ", status=" + status +
                 '}';
     }
 
