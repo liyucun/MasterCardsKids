@@ -1,8 +1,8 @@
 package com.yucun.mastercardsforkids.fragment;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -40,7 +40,7 @@ public class TaskFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.task_fragment,container);
+        View view=inflater.inflate(R.layout.task_fragment,container,false);
         ButterKnife.bind(this,view);
         createDummyData();
         return view;
@@ -55,8 +55,16 @@ public class TaskFragment extends Fragment {
                 .setContext(getActivity())
                 .setUserTaskList(userTaskList)
                 .build();
-        taskList.setLayoutManager(new LinearLayoutManager(getContext()));
+        taskList.setLayoutManager(new LinearLayoutManager(getActivity()));
         taskList.setItemAnimator(new DefaultItemAnimator());
         taskList.setAdapter(taskAdapter);
+    }
+    public static Fragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        TaskFragment fragment = new TaskFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.yucun.mastercardsforkids.R;
+import com.yucun.mastercardsforkids.fragment.AlertDialogFragment;
 import com.yucun.mastercardsforkids.model.UserTask;
 
 import java.util.List;
@@ -69,6 +70,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            taskStatus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(!taskStatus.isChecked()){
+                        AlertDialogFragment.newInstance();
+                    }
+                }
+            });
         }
     }
     public static class TaskAdapterBuilder{

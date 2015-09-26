@@ -1,11 +1,14 @@
 package com.yucun.mastercardsforkids.activity;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.yucun.mastercardsforkids.R;
+import com.yucun.mastercardsforkids.fragment.TaskFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +23,15 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container,TaskFragment.newInstance())
+                .commit();
     }
 
     @Override
