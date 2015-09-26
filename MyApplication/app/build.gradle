@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.yucun.mastercardsforkids"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -25,4 +25,5 @@ dependencies {
     compile 'com.google.android.gms:play-services:7.8.0'
     compile 'com.android.support:design:23.0.1'
     compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.simplify:sdk-android:1.0.2'
 }
