@@ -1,18 +1,58 @@
 package com.yucun.mastercardsforkids.activity;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.LogInCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.yucun.mastercardsforkids.R;
+import com.yucun.mastercardsforkids.model.Profile;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.List;
+
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        ParseUser.logInInBackground("julia", "julia", new LogInCallback(){
+            public void done(ParseUser user, ParseException e) {
+                if (user != null) {
+                    // Hooray! The user is logged in.
+
+                    ParseQuery<ParseObject> query = ParseQuery.getQuery("Profile");
+                    query.whereEqualTo("user", user);
+                    query.findInBackground(new FindCallback<ParseObject>() {
+                        @Override
+                        public void done(List<ParseObject> list, ParseException e) {
+
+                            if(e == null){
+                                ParseObject p = list.get(0);
+                                p.getString("");
+                            }else{
+                                // error happened
+                            }
+
+                        }
+                    });
+
+                } else {
+                    // Signup failed. Look at the ParseException to see what happened.
+                }
+            }
+        });
+
+
     }
 
     @Override
