@@ -2,14 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/yellow_background">
 
     <RelativeLayout
         android:id="@+id/profile_area"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
-        android:background="@android:color/holo_blue_dark">
+        android:layout_weight="3">
 
         <ImageView
             android:id="@+id/avatar"
@@ -30,7 +30,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:background="@android:color/holo_blue_light"
         android:id="@+id/task_area"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -45,7 +44,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:background="@android:color/holo_blue_light"
         android:id="@+id/wallet_area"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -60,7 +58,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:background="@android:color/holo_blue_light"
         android:id="@+id/goals_area"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -75,7 +72,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:background="@android:color/holo_blue_light"
         android:id="@+id/transaction_area"
         android:layout_width="match_parent"
         android:layout_height="0dp"

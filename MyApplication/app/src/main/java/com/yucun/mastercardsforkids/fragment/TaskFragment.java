@@ -1,6 +1,7 @@
 package com.yucun.mastercardsforkids.fragment;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -60,4 +61,5 @@ public class TaskFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
 }

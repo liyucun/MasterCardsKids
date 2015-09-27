@@ -19,6 +19,7 @@ import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.yucun.mastercardsforkids.R;
 import com.yucun.mastercardsforkids.fragment.GoalsFragment;
+import com.yucun.mastercardsforkids.fragment.HomeFragment;
 import com.yucun.mastercardsforkids.model.Goal;
 import com.yucun.mastercardsforkids.model.Profile;
 import com.yucun.mastercardsforkids.model.Task;
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                         List<Task> task_list = new ArrayList<Task>(raw_task_list.size());
 
                         for (ParseObject rawTask : raw_task_list) {
-                            Task task = new Task(rawTask.getObjectId(), rawTask.getString("name"));
+                            Task task = new Task(rawTask.getObjectId(), rawTask.getString("name"),rawTask.getBoolean("enable"));
                             task_list.add(task);
                         }
 
@@ -109,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 progressDialog.dismiss();
                 getFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.container, GoalsFragment.instantiate(activity,GoalsFragment.class.getName()))
+                        .replace(R.id.container, HomeFragment.instantiate(activity, HomeFragment.class.getName()))
                         .commit();
             }
         });
@@ -135,5 +136,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        int count = getFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+        } else {
+            getFragmentManager().popBackStack();
+        }
     }
 }

@@ -46,7 +46,8 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 getFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.container,TaskFragment.newInstance())
+                        .add(R.id.container, TaskFragment.instantiate(getActivity(), TaskFragment.class.getName()))
+                        .addToBackStack("home")
                         .commit();
             }
         });
@@ -55,7 +56,8 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 getFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.container,WalletFragment.instantiate(getActivity(), WalletFragment.class.getName()))
+                        .add(R.id.container, WalletFragment.instantiate(getActivity(), WalletFragment.class.getName()))
+                        .addToBackStack("home")
                         .commit();
             }
         });
@@ -64,7 +66,8 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 getFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.container,GoalsFragment.instantiate(getActivity(), GoalsFragment.class.getName()))
+                        .add(R.id.container, GoalsFragment.instantiate(getActivity(), GoalsFragment.class.getName()))
+                        .addToBackStack("home")
                         .commit();
             }
         });
@@ -73,7 +76,8 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 getFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.container,TransactionFragment.instantiate(getActivity(), TransactionFragment.class.getName()))
+                        .add(R.id.container, TransactionFragment.instantiate(getActivity(), TransactionFragment.class.getName()))
+                        .addToBackStack("home")
                         .commit();
             }
         });
