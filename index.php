@@ -54,7 +54,7 @@ require __DIR__ . '/defaults.php';
           </div>
 
           <div class="inner cover">
-            <h1 class="cover-heading">Welcome, <?php echo $_SESSION['username'] . '!' ?></h1>
+            <h1 class="cover-heading">Welcome<?php if (isset($_SESSION['username'])) { echo ', ' . $_SESSION['username']; } echo '!'; ?></h1>
 
 <?php 
 
@@ -98,8 +98,7 @@ echo            '</div>';
 
 
 <br><br>
-            <p class="lead">
-              <a href="goals.php" class="btn btn-success">See All Goals</a>
+            <p class="lead"><?php if (isset($_SESSION['username'])) { echo '<a href="goals.php" class="btn btn-success">See All Goals</a>'; } ?>
             </p>
           </div>
 

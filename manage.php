@@ -127,9 +127,11 @@ if (!empty($_POST)) {
 
           <div class="inner cover">
 <br><br>
+
+<?php if (!isset($_SESSION['username'])) { die(); } ?>
+
             <h1 class="cover-heading">Manage your children and their cards
 </h1>
-
 
 
 
