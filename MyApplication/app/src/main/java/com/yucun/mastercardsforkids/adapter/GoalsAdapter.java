@@ -8,6 +8,13 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseRelation;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.yucun.mastercardsforkids.R;
 import com.yucun.mastercardsforkids.activity.MainActivity;
 import com.yucun.mastercardsforkids.model.Goal;
@@ -26,6 +33,11 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.ViewHolder> 
         this.goals=goalsAdapterBuilder.getGoals();
         this.budget=goalsAdapterBuilder.getBudget();
     }
+
+    public List<Goal> getGoals() {
+        return goals;
+    }
+
     float budget;
     Context context;
     List<Goal> goals;
@@ -113,5 +125,32 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.ViewHolder> 
         public GoalsAdapter build(){
             return new GoalsAdapter(this);
         }
+    }
+    public void addGoalToParse(final Goal goal){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Profile");
+        query.whereEqualTo("user", ParseUser.getCurrentUser());
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+                    final ParseObject rawProfile = list.get(0);
+
+                    // add goal
+                    final ParseRelation<ParseObject> goals = rawProfile.getRelation("goals");
+
+                    final ParseObject new_goal = new ParseObject("Goal");
+                    new_goal.put("name", goal.getName());
+                    new_goal.put("amount", goal.getAmount());
+                    new_goal.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            goals.add(new_goal);
+                            rawProfile.saveInBackground();
+                        }
+                    });
+
+                }
+            }
+        });
     }
 }

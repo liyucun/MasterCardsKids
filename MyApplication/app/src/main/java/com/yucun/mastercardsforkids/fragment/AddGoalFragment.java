@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yucun.mastercardsforkids.R;
 import com.yucun.mastercardsforkids.activity.MainActivity;
@@ -23,8 +24,6 @@ import butterknife.ButterKnife;
  * Created by jianhuizhu on 15-09-26.
  */
 public class AddGoalFragment extends Fragment {
-    @Bind(R.id.container)
-    CoordinatorLayout container;
     @Bind(R.id.goal_name_edit)
     EditText goalNameEdit;
     @Bind(R.id.goal_amount_edit)
@@ -60,8 +59,7 @@ public class AddGoalFragment extends Fragment {
                      * 3rd parameter is the duration for this snackbar
                      *               here is Snackbar.LENGTH_SHORT
                      */
-                    Snackbar.make(container, "Mmmm... you sure name or amount is correct?", Snackbar.LENGTH_SHORT)
-                            .show();
+                    Toast.makeText(getActivity(),"Mmmm , are you sure you typed correct ?",Toast.LENGTH_LONG).show();
                 }
                 else{
                     Goal goal=new Goal();
@@ -70,7 +68,7 @@ public class AddGoalFragment extends Fragment {
                     ((MainActivity)getActivity()).getProfile().getGoals().add(goal);
                     getFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.container,GoalsFragment.instantiate(getActivity(),GoalsFragment.class.getName()))
+                            .add(R.id.container,GoalsFragment.instantiate(getActivity(),GoalsFragment.class.getName()))
                             .commit();
                 }
             }

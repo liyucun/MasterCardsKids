@@ -72,7 +72,7 @@
         android:id="@+id/confirm_add_goal"
         android:text="ADD"
         android:textSize="30sp"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@color/brown_500"
         android:textColor="@android:color/white"
         android:textAlignment="center"
         android:gravity="center"

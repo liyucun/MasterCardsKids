@@ -3,6 +3,7 @@ package com.yucun.mastercardsforkids.fragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,6 +33,9 @@ import butterknife.ButterKnife;
  * Created by jianhuizhu on 15-09-26.
  */
 public class GoalsFragment extends Fragment {
+    GoalsAdapter goalsAdapter;
+    @Bind(R.id.floating_action_button)
+    FloatingActionButton floatingActionButton;
     private float budget=0.0f;
     @Bind(R.id.goals_list)
     RecyclerView goalsList;
@@ -41,7 +45,7 @@ public class GoalsFragment extends Fragment {
         Goal goal1=new Goal();
         goal1.setName("iPad");
         goal1.setAmount(1000);
-        Goal goal2=new Goal();
+        Goal goal2 = new Goal();
         goal2.setName("Remote Contorl Car");
         goal2.setAmount(10000);
         goals.add(goal1);
@@ -62,7 +66,7 @@ public class GoalsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        GoalsAdapter goalsAdapter=GoalsAdapter
+        goalsAdapter=GoalsAdapter
                 .GoalsAdapterBuilder.newInstance()
                 .setGoals(goals)
                 .setBudget(this.budget)
@@ -71,33 +75,16 @@ public class GoalsFragment extends Fragment {
         goalsList.setLayoutManager(new LinearLayoutManager(getActivity()));
         goalsList.setItemAnimator(new DefaultItemAnimator());
         goalsList.setAdapter(goalsAdapter);
-    }
-
-    public void addGoalToParse(final Goal goal){
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Profile");
-        query.whereEqualTo("user", ParseUser.getCurrentUser());
-        query.findInBackground(new FindCallback<ParseObject>() {
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void done(List<ParseObject> list, ParseException e) {
-                if (e == null) {
-                    final ParseObject rawProfile = list.get(0);
-
-                    // add goal
-                    final ParseRelation<ParseObject> goals = rawProfile.getRelation("goals");
-
-                    final ParseObject new_goal = new ParseObject("Goal");
-                    new_goal.put("name", goal.getName());
-                    new_goal.put("amount", goal.getAmount());
-                    new_goal.saveInBackground(new SaveCallback() {
-                        @Override
-                        public void done(ParseException e) {
-                            goals.add(new_goal);
-                            rawProfile.saveInBackground();
-                        }
-                    });
-
-                }
+            public void onClick(View v) {
+                getFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.container,AddGoalFragment.instantiate(getActivity(),AddGoalFragment.class.getName()))
+                        .commit();
             }
         });
     }
+
+
 }
