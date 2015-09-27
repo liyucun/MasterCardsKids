@@ -62,6 +62,7 @@ public class TaskFragment extends Fragment {
                 .newinstance()
                 .setContext(getActivity())
                 .setUserTaskList(userTaskList)
+                .setUserProfile(((MainActivity)getActivity()).getProfile())
                 .build();
         taskList.setLayoutManager(new LinearLayoutManager(getActivity()));
         taskList.setItemAnimator(new DefaultItemAnimator());
