@@ -41,50 +41,53 @@ public class LoginActivity extends Activity {
         name.setTypeface(font);
         password.setTypeface(font);
         confirmLogin.setTypeface(font);
-        ParseUser.logInInBackground("julia", "julia", new LogInCallback() {
-            public void done(ParseUser user, ParseException e) {
-
-                if (user != null) {
-                    // Hooray! The user is logged in.
-
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-
-                } else {
-                    // Signup failed. Look at the ParseException to see what happened.
-                }
-            }
-        });
-
-//        confirmLogin.setOnClickListener(new View.OnClickListener() {
-//            ProgressDialog progressDialog;
-//            @Override
-//            public void onClick(View v) {
-//                Handler handler=new Handler();
-//                handler.post(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        progressDialog = ProgressDialog.show(activity, null, "Loading...", true, false);
-//                    }
-//                });
+//        ParseUser.logInInBackground("julia", "julia", new LogInCallback() {
+//            public void done(ParseUser user, ParseException e) {
 //
-////
+//                if (user != null) {
+//                    // Hooray! The user is logged in.
 //
-//                ParseUser.logInInBackground(name.getText().toString(), password.getText().toString(), new LogInCallback() {
-//                    public void done(ParseUser user, ParseException e) {
-//                        progressDialog.dismiss();
-//                        if (user != null) {
-//                            // Hooray! The user is logged in.
+//                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
 //
-//                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-//
-//                        } else {
-//                            // Signup failed. Look at the ParseException to see what happened.
-//                        }
-//                    }
-//                });
-//
+//                } else {
+//                    // Signup failed. Look at the ParseException to see what happened.
+//                }
 //            }
 //        });
+
+        confirmLogin.setOnClickListener(new View.OnClickListener() {
+            ProgressDialog progressDialog;
+            @Override
+            public void onClick(View v) {
+                String mname=name.getText().toString();
+                String mpwd=password.getText().toString();
+                ParseUser.logInInBackground(mname, mpwd, new LogInCallback() {
+                    public void done(ParseUser user, ParseException e) {
+                        progressDialog.dismiss();
+                        if (user != null) {
+                            // Hooray! The user is logged in.
+
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+                        } else {
+                            // Signup failed. Look at the ParseException to see what happened.
+                        }
+                    }
+                });
+                Handler handler=new Handler();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressDialog = ProgressDialog.show(activity, null, "Loading...", true, false);
+                    }
+                });
+
+//
+
+
+
+            }
+        });
     }
 
 }
