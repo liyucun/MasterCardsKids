@@ -7,8 +7,10 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.yucun.mastercardsforkids.R;
 import com.yucun.mastercardsforkids.activity.MainActivity;
 
@@ -19,6 +21,8 @@ import butterknife.ButterKnife;
  * Created by jianhuizhu on 15-09-26.
  */
 public class WalletFragment extends Fragment {
+    @Bind(R.id.wallet)
+    ImageView imageView;
     @Bind(R.id.wallet_text_title)
     TextView walletTitle;
     @Bind(R.id.allowance_text)
@@ -41,6 +45,7 @@ public class WalletFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
+        Picasso.with(getActivity()).load(R.drawable.light_background).fit().into(imageView);
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/font.ttf");
         allowanceRecord.setText(Integer.toString(((MainActivity) getActivity()).getProfile().getAllowance()));
         allowanceRecord.setTypeface(font);

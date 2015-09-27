@@ -13,11 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.squareup.picasso.Picasso;
 import com.yucun.mastercardsforkids.R;
 
 import butterknife.Bind;
@@ -31,12 +33,14 @@ public class LoginActivity extends Activity {
     Activity activity = this;
     @Bind(R.id.confirm_login)
     TextView confirmLogin;
-
+    @Bind(R.id.login)
+    ImageView login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        Picasso.with(this).load(R.drawable.yellow_background).fit().into(login);
         Typeface font = Typeface.createFromAsset(this.getAssets(), "fonts/font.ttf");
         name.setTypeface(font);
         password.setTypeface(font);

@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.parse.FindCallback;
@@ -21,6 +22,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+import com.squareup.picasso.Picasso;
 import com.yucun.mastercardsforkids.R;
 import com.yucun.mastercardsforkids.activity.MainActivity;
 import com.yucun.mastercardsforkids.adapter.TaskAdapter;
@@ -42,6 +44,8 @@ public class TaskFragment extends Fragment {
     TextView taskTitle;
     @Bind(R.id.task_list)
     RecyclerView taskList;
+    @Bind(R.id.task)
+    ImageView imageView;
     TaskAdapter taskAdapter;
     @Nullable
     @Override
@@ -55,6 +59,7 @@ public class TaskFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Picasso.with(getActivity()).load(R.drawable.light_background).fit().into(imageView);
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/font.ttf");
         taskTitle.setTypeface(font);
         taskAdapter= TaskAdapter

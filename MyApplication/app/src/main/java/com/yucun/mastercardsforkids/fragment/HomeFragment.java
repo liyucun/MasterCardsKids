@@ -31,6 +31,8 @@ import butterknife.ButterKnife;
  * Created by jianhuizhu on 15-09-26.
  */
 public class HomeFragment extends Fragment {
+    @Bind(R.id.home)
+    ImageView home;
     @Bind(R.id.task_text)
     TextView taskText;
     @Bind(R.id.goal_text)
@@ -95,6 +97,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Picasso.with(getActivity()).load(R.drawable.home_background).fit().into(home);
         //((MainActivity)getActivity()).getProfile()
         taskArea.setOnClickListener(new View.OnClickListener() {
             @Override

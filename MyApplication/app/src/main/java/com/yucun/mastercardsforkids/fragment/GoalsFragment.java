@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.parse.FindCallback;
@@ -20,6 +21,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+import com.squareup.picasso.Picasso;
 import com.yucun.mastercardsforkids.R;
 import com.yucun.mastercardsforkids.activity.MainActivity;
 import com.yucun.mastercardsforkids.adapter.GoalsAdapter;
@@ -43,6 +45,8 @@ public class GoalsFragment extends Fragment {
     private float budget=0.0f;
     @Bind(R.id.goals_list)
     RecyclerView goalsList;
+    @Bind(R.id.goal)
+    ImageView imageView;
     private List<Goal> goals;
     private void createDummyGoals(){
         this.goals = new ArrayList<>();
@@ -70,6 +74,7 @@ public class GoalsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Picasso.with(getActivity()).load(R.drawable.light_background).fit().into(imageView);
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/font.ttf");
         goalsTitle.setTypeface(font);
         goalsAdapter=GoalsAdapter
