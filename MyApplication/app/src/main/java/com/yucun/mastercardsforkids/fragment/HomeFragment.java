@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.yucun.mastercardsforkids.R;
 import com.yucun.mastercardsforkids.activity.MainActivity;
@@ -30,11 +31,17 @@ public class HomeFragment extends Fragment {
     RelativeLayout goalsArea;
     @Bind(R.id.transaction_area)
     RelativeLayout transactionArea;
+    @Bind(R.id.profile_name)
+    TextView profile_name;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_fragment,container,false);
         ButterKnife.bind(this, view);
+
+        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/font.ttf");
+        profile_name.setTypeface(font);
+
         return view;
     }
 
