@@ -10,6 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseRelation;
+import com.parse.ParseUser;
 import com.yucun.mastercardsforkids.R;
 import com.yucun.mastercardsforkids.activity.MainActivity;
 import com.yucun.mastercardsforkids.adapter.GoalsAdapter;
@@ -64,5 +70,42 @@ public class GoalsFragment extends Fragment {
         goalsList.setLayoutManager(new LinearLayoutManager(getActivity()));
         goalsList.setItemAnimator(new DefaultItemAnimator());
         goalsList.setAdapter(goalsAdapter);
+    }
+
+    public void addGoalToParse(final Goal goal){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Profile");
+        query.whereEqualTo("user", ParseUser.getCurrentUser());
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+                    ParseObject rawProfile = list.get(0);
+
+                    // change allowance
+                    if(goal.isEnabled()){
+                        int new_allowance = rawProfile.getInt("allowance") - goal.getAmount();
+                        rawProfile.put("allowance", new_allowance);
+                    }else{
+                        int new_allowance = rawProfile.getInt("allowance") + goal.getAmount();
+                        rawProfile.put("allowance", new_allowance);
+                    }
+
+                    // set goal enabled to false
+                    ParseRelation<ParseObject> goals = rawProfile.getRelation("goals");
+
+                    try{
+                        for(ParseObject object : goals.getQuery().find()){
+                            if(object.getObjectId().equals(goal.getObjectId())){
+                                object.put("enabled", !goal.isEnabled());
+                                object.saveInBackground();
+                                break;
+                            }
+                        }
+                    }catch (ParseException exception){
+
+                    }
+                }
+            }
+        });
     }
 }

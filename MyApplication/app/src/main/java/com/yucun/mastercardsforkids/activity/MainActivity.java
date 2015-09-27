@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                         List<Goal> goal_list = new ArrayList<Goal>(raw_goal_list.size());
 
                         for (ParseObject rawGoal : raw_goal_list) {
-                            Goal goal = new Goal(rawGoal.getObjectId(), rawGoal.getString("name"), (int) rawGoal.getNumber("amount"));
+                            Goal goal = new Goal(rawGoal.getObjectId(), rawGoal.getString("name"), (int) rawGoal.getNumber("amount"), rawGoal.getBoolean("enabled"));
                             goal_list.add(goal);
                         }
 

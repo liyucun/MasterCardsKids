@@ -11,17 +11,20 @@ public class Goal{
     String objectId;
     String name;
     int amount;
+    boolean enabled;
 
-    public Goal(String objectId, String name, int amount) {
+    public Goal(String objectId, String name, int amount, boolean enabled) {
         this.objectId = objectId;
         this.name = name;
         this.amount = amount;
+        this.enabled = enabled;
     }
 
     public Goal() {
         this.objectId = "";
         this.name = "";
         this.amount = 0;
+        this.enabled = true;
     }
 
     public String getObjectId() {
@@ -46,5 +49,13 @@ public class Goal{
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }
