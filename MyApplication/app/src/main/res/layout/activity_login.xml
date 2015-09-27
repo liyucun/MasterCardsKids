@@ -40,9 +40,12 @@
             android:shadowColor="@color/black"
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
-    <Button
+    <TextView
+        android:background="@color/brown_500"
         android:id="@+id/confirm_login"
         android:text="Go"
+        android:textColor="@color/white"
+        android:gravity="center"
         android:layout_alignParentBottom="true"
         android:textSize="30dp"
         android:layout_width="match_parent"
