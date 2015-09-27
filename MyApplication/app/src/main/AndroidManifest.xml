@@ -39,11 +39,7 @@
         <activity android:name=".activity.SplashScreenActivity"
             android:label="SplashScreenActivity"
             android:windowSoftInputMode="adjustResize|stateHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
             </activity>
         <activity
             android:name=".activity.LoginActivity"
@@ -52,8 +48,13 @@
 
         </activity>
         <activity
-            android:name=".activity.EarnMoneyActivity" >
+            android:name=".activity.EarnMoneyActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <!-- Activities responsible for gathering payment info -->

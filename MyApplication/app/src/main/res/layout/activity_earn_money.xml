@@ -1,31 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/card_number"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/yellow_background">
+
+            <TextView
+                android:id="@+id/card_number_title"
+                android:layout_margin="20dp"
+                android:text="CARD NUMBER"
+                android:textColor="@android:color/primary_text_dark"
+                android:textSize="25sp"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+
+                android:layout_margin="20dp"
+                android:layout_below="@+id/card_number_title"
+                android:id="@+id/card_number"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Credit Card Number"/>
+
+    <TextView
+        android:layout_below="@+id/card_number"
+        android:id="@+id/expire_date_title"
+        android:layout_margin="20dp"
+        android:text="CARD NUMBER"
+        android:textSize="25sp"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="Credit Card Number"/>
+        android:layout_height="wrap_content" />
+            <EditText
+                android:layout_margin="20dp"
+                android:layout_below="@+id/expire_date_title"
+                android:id="@+id/card_expire_date"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Credit Card Expire Date mm/yy" />
 
-    <EditText
-        android:id="@+id/card_expire_date"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="Credit Card Expire Date"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_above="@+id/submit"
+            android:onClick="onScanPress"
+            android:text="SCAN CREDIT CARD" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="click me"
-        android:onClick="onScanPress"/>
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:onClick="requestCardToken"
+            android:text="SUBMIT" />
 
-    <Button
-        android:id="@+id/submit"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="submit"
-        android:onClick="requestCardToken"/>
-
-</LinearLayout>
+    </RelativeLayout>
