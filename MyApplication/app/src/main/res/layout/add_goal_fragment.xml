@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/add_goal_text_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="GOALS"
+        android:textSize="30sp" />
+    <LinearLayout
+        android:id="@+id/name_area"
+        android:orientation="horizontal"
+        android:layout_below="@+id/add_goal_text_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/gift"
+            android:id="@+id/name_icon"
+            android:scaleType="centerInside"
+            android:layout_weight="2"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="40dp" />
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/goal_name_area"
+        android:layout_weight="8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="10dp">
+
+        <EditText
+            android:id="@+id/goal_name_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="The dreaming stuff is..."
+            android:inputType="textEmailAddress" />
+    </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/name_area"
+        android:id="@+id/amount_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/money_bag"
+            android:id="@+id/money_icon"
+            android:layout_weight="2"
+            android:scaleType="centerInside"
+            android:layout_width="0dp"
+            android:layout_gravity="center"
+            android:layout_height="40dp" />
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/goal_amount_area"
+        android:layout_weight="8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+        <EditText
+            android:id="@+id/goal_amount_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="How much money I need..."
+            android:inputType="numberDecimal" />
+    </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/confirm_add_goal"
+        android:text="ADD"
+        android:textSize="30sp"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>
