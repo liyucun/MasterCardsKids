@@ -2,17 +2,24 @@ package com.yucun.mastercardsforkids.fragment;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.software.shell.fab.ActionButton;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 import com.yucun.mastercardsforkids.R;
 import com.yucun.mastercardsforkids.activity.EarnMoneyActivity;
 import com.yucun.mastercardsforkids.activity.MainActivity;
@@ -44,7 +51,8 @@ public class HomeFragment extends Fragment {
     TextView profile_name;
     @Bind(R.id.scan_text)
     TextView scan_text;
-
+    @Bind(R.id.home_background)
+    LinearLayout l;
     @Bind(R.id.task_button)
     ActionButton task_button;
     @Bind(R.id.wallet_button)

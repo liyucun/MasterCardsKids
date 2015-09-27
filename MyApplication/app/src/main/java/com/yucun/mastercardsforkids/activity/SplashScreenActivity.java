@@ -13,7 +13,9 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
 import com.yucun.mastercardsforkids.R;
 
 import butterknife.Bind;
@@ -23,6 +25,8 @@ import butterknife.ButterKnife;
  * Created by jianhuizhu on 15-09-27.
  */
 public class SplashScreenActivity extends Activity{
+    @Bind(R.id.myImage)
+    ImageView myImage;
     @Bind(R.id.container_splash_screen)
     CoordinatorLayout container;
     @Override
@@ -30,6 +34,7 @@ public class SplashScreenActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen_activity);
         ButterKnife.bind(this);
+        Picasso.with(this).load(R.drawable.splash_screen).fit().into(myImage);
         if(isOnline()) {
             new Handler().postDelayed(new Runnable() {
                 @Override
