@@ -126,7 +126,7 @@ if (!empty($_POST)) {
 
 
           <div class="inner cover">
-<br><br>
+<br><br><br>
 
 <?php if (!isset($_SESSION['username'])) { die(); } ?>
 
@@ -141,13 +141,14 @@ if (!empty($_POST)) {
 <div class="list-group">
   <a href="#" class="list-group-item active">
     <h4 class="list-group-item-heading">Linking Cards</h4>
-    <p class="list-group-item-text">1. Create your child a unique username<br>2. Assign them their corresponding card number</p>
+    <p class="list-group-item-text">1. Create your child a unique username<br>2. Assign them a secure password<br>3. Assign them their corresponding card number</p>
   </a>
 </div>
 
 <form action="manage.php" method="post">
   <input type="hidden" name="action" value="linkcard">
   <b>Child Username:</b> <br><input type="text" name="childusername" style="color: black"><br>
+  <b>Child Password:</b> <br><input type="password" name="childpassword" style="color: black"><br>
   <b>Card Number:</b> <br><input type="text" name="cardnumber" style="color: black"><br>
   <button type="submit" class="btn btn-success">Link</button>
 </form>
