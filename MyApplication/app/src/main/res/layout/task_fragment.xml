@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/light_background">
 <TextView
+    android:id="@+id/task_fragment_title"
     android:text="Tasks"
     android:textSize="30sp"
     android:layout_width="match_parent"

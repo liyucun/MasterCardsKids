@@ -2,6 +2,7 @@ package com.yucun.mastercardsforkids.fragment;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
@@ -24,6 +25,8 @@ import butterknife.ButterKnife;
  * Created by jianhuizhu on 15-09-26.
  */
 public class AddGoalFragment extends Fragment {
+    @Bind(R.id.add_goal_text_title)
+    TextView addGoalTitle;
     @Bind(R.id.goal_name_edit)
     EditText goalNameEdit;
     @Bind(R.id.goal_amount_edit)
@@ -42,6 +45,11 @@ public class AddGoalFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/font.ttf");
+        addGoalTitle.setTypeface(font);
+        goalNameEdit.setTypeface(font);
+        goalAmountEdit.setTypeface(font);
+        confirmAddGoal.setTypeface(font);
         confirmAddGoal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +76,7 @@ public class AddGoalFragment extends Fragment {
                     ((MainActivity)getActivity()).getProfile().getGoals().add(goal);
                     getFragmentManager()
                             .beginTransaction()
-                            .add(R.id.container,GoalsFragment.instantiate(getActivity(),GoalsFragment.class.getName()))
+                            .add(R.id.container, GoalsFragment.instantiate(getActivity(), GoalsFragment.class.getName()))
                             .commit();
                 }
             }

@@ -2,6 +2,7 @@ package com.yucun.mastercardsforkids.fragment;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -10,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -36,6 +38,8 @@ import butterknife.ButterKnife;
  */
 public class TaskFragment extends Fragment {
     private List<Task> userTaskList;
+    @Bind(R.id.task_fragment_title)
+    TextView taskTitle;
     @Bind(R.id.task_list)
     RecyclerView taskList;
     TaskAdapter taskAdapter;
@@ -51,6 +55,8 @@ public class TaskFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/font.ttf");
+        taskTitle.setTypeface(font);
         taskAdapter= TaskAdapter
                 .TaskAdapterBuilder
                 .newinstance()
