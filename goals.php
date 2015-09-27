@@ -41,7 +41,7 @@ require __DIR__ . '/defaults.php';
 
         <div class="cover-container">
 
-          <div class="masthead clearfix">
+          <div class="masthead clearfix" style="position: relative">
             <div class="inner">
               <h3 class="masthead-brand">BIZYBEES</h3>
               <nav>
