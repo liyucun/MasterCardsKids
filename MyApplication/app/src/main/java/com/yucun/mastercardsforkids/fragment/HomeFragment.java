@@ -71,14 +71,9 @@ public class HomeFragment extends Fragment {
         scan_text.setTypeface(font);
 
         task_button.setButtonColor(getResources().getColor(R.color.brown_500));
-        task_button.setImageResource(R.drawable.task_icon);
-
         wallet_button.setButtonColor(getResources().getColor(R.color.brown_500));
-        wallet_button.setImageResource(R.drawable.wallet_icon);
         goal_button.setButtonColor(getResources().getColor(R.color.brown_500));
-        goal_button.setImageResource(R.drawable.goals);
         transaction_button.setButtonColor(getResources().getColor(R.color.brown_500));
-        transaction_button.setImageResource(R.drawable.transaction);
         scan_button.setButtonColor(getResources().getColor(R.color.brown_500));
 
         task_button.playShowAnimation();
