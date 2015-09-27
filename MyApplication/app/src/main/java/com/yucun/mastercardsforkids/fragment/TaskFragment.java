@@ -11,6 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseRelation;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.yucun.mastercardsforkids.R;
 import com.yucun.mastercardsforkids.activity.MainActivity;
 import com.yucun.mastercardsforkids.adapter.TaskAdapter;
@@ -52,6 +60,7 @@ public class TaskFragment extends Fragment {
         taskList.setLayoutManager(new LinearLayoutManager(getActivity()));
         taskList.setItemAnimator(new DefaultItemAnimator());
         taskList.setAdapter(taskAdapter);
+
     }
     public static Fragment newInstance() {
 
@@ -62,4 +71,73 @@ public class TaskFragment extends Fragment {
         return fragment;
     }
 
+    public void addTaskToParse(final Task task){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Profile");
+        query.whereEqualTo("user", ParseUser.getCurrentUser());
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+                    final ParseObject rawProfile = list.get(0);
+
+                    final ParseRelation<ParseObject> tasks = rawProfile.getRelation("tasks");
+                    final ParseObject taskParseObject = new ParseObject("Task");
+                    taskParseObject.put("name", task.getName());
+                    taskParseObject.put("enabled", true);
+
+                    taskParseObject.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if(e == null){
+                                tasks.add(taskParseObject);
+                                rawProfile.saveInBackground();
+                            }
+
+                        }
+                    });
+
+
+                }else{
+
+                }
+            }
+        });
+    }
+
+    public void finishTask(final Task task){
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Profile");
+        query.whereEqualTo("user", ParseUser.getCurrentUser());
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+                    ParseObject rawProfile = list.get(0);
+
+                    // change allowance
+                    int new_allowance = rawProfile.getInt("allowance") + task.getAmount();
+                    rawProfile.put("allowance", new_allowance);
+
+                    // set task enabled to false
+                    ParseRelation<ParseObject> tasks = rawProfile.getRelation("tasks");
+
+                    try{
+                        for(ParseObject object : tasks.getQuery().find()){
+                            if(object.getObjectId().equals(task.getObjectId())){
+                                object.put("enabled", false);
+                                object.saveInBackground();
+                                break;
+                            }
+                        }
+                    }catch (ParseException exception){
+
+                    }
+
+                    rawProfile.saveInBackground();
+                }else{
+
+                }
+            }
+        });
+    }
 }

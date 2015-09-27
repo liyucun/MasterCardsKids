@@ -10,17 +10,20 @@ public class Task {
     String objectId;
     String name;
     Boolean enabled;
+    int amount;
 
-    public Task(String objectId, String name, Boolean enabled) {
+    public Task(String objectId, String name, Boolean enabled, int amount) {
         this.objectId = objectId;
         this.name = name;
         this.enabled = enabled;
+        this.amount = amount;
     }
 
     public Task() {
         this.objectId = "";
         this.name = "";
         this.enabled = true;
+        this.amount = 0;
     }
 
     public String getObjectId() {
@@ -45,5 +48,13 @@ public class Task {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }

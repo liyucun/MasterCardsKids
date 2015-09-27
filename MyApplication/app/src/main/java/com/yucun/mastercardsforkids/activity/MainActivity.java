@@ -90,11 +90,11 @@ public class MainActivity extends AppCompatActivity {
                     ParseRelation<ParseObject> tasks = rawProfile.getRelation("tasks");
 
                     try {
-                        List<ParseObject> raw_task_list = goals.getQuery().find();
+                        List<ParseObject> raw_task_list = tasks.getQuery().find();
                         List<Task> task_list = new ArrayList<Task>(raw_task_list.size());
 
                         for (ParseObject rawTask : raw_task_list) {
-                            Task task = new Task(rawTask.getObjectId(), rawTask.getString("name"),rawTask.getBoolean("enable"));
+                            Task task = new Task(rawTask.getObjectId(), rawTask.getString("name"),rawTask.getBoolean("enable"), rawTask.getInt("amount"));
                             task_list.add(task);
                         }
 
