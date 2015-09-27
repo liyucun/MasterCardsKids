@@ -160,7 +160,7 @@ if (!empty($_POST)) {
 <div class="list-group">
   <a href="#" class="list-group-item active">
     <h4 class="list-group-item-heading">Setting Goals</h4>
-    <p class="list-group-item-text">1. Select your child / card<br>2. Enter a name for this goal<br>3. Assign this goal an amount in EduCash</p>
+    <p class="list-group-item-text">1. Select your child / card<br>2. Enter a name for this goal<br>3. Assign this goal an amount</p>
   </a>
 </div>
 

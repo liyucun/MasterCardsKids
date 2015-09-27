@@ -72,7 +72,7 @@ require __DIR__ . '/defaults.php';
            $results = $query->find();
            if (count($results) > 0 ) {
             $object = $results[0];
-            $educash = $object->get("educash");
+            $educash = $object->get("allowance");
             $user = $object->get("user");
             $username = $user->get("username");
             $relation = $object->getRelation("goals");
