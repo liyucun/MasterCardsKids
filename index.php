@@ -81,23 +81,22 @@ require __DIR__ . '/defaults.php';
              $goal = $goals[$i];
              $amount = $amount + $goal->get('amount');
             }
-echo '<br><br>';
-echo             '<p class="lead">Overall progress for: ' . $username . '</p>';
-echo             '<div class="progress">';
-echo              '<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="' . round(($educash / $amount) * 100) . '" aria-valuemin="0" aria-valuemax="100" style="width: ' . round(($educash / $amount) * 100) . '%">';
-echo               '<span class="sr-only">' . round(($educash / $amount) * 100) . '% Complete</span>';
-echo              '</div>';
-echo            '</div>';
+            echo '<br><br>';
+            echo             '<p class="lead">Overall progress for: ' . $username . '</p>';
+            echo             '<div class="progress">';
+            echo              '<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="' . round(($educash / $amount) * 100) . '" aria-valuemin="0" aria-valuemax="100" style="width: ' . round(($educash / $amount) * 100) . '%">';
+            echo               '<span class="sr-only">' . round(($educash / $amount) * 100) . '% Complete</span>';
+            echo              '</div>';
+            echo            '</div>';
            }
           }
          }
         }
 
-
 ?>
 
 
-<br><br>
+          <br><br>
             <p class="lead"><?php if (isset($_SESSION['username'])) { echo '<a href="goals.php" class="btn btn-success">See All Goals</a>'; } ?>
             </p>
           </div>
@@ -107,16 +106,9 @@ echo            '</div>';
 <!-- footer? -->
             </div>
           </div>
-
         </div>
-
       </div>
-
     </div>
-
-
-
-
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
