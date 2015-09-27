@@ -21,8 +21,16 @@ import butterknife.ButterKnife;
  * Created by jianhuizhu on 15-09-26.
  */
 public class HomeFragment extends Fragment {
+    @Bind(R.id.task_text)
+    TextView taskText;
+    @Bind(R.id.goal_text)
+    TextView goalText;
     @Bind(R.id.avatar)
     ImageView avatar;
+    @Bind(R.id.wallet_text)
+    TextView walletText;
+    @Bind(R.id.transaction_text)
+    TextView transactionText;
     @Bind(R.id.task_area)
     RelativeLayout taskArea;
     @Bind(R.id.wallet_area)
@@ -41,6 +49,7 @@ public class HomeFragment extends Fragment {
 
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/font.ttf");
         profile_name.setTypeface(font);
+        taskText.setTypeface(font);
 
         return view;
     }

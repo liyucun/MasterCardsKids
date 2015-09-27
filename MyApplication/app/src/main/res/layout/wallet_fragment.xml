@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/yellow_background">
     <TextView
+        android:id="@+id/wallet_text_title"
         android:text="WALLET"
         android:textSize="30dp"
         android:layout_width="match_parent"
@@ -22,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/allowance_text"
                 android:text="ALLOWANCE"
                 android:layout_weight="3"
                 android:gravity="center"
@@ -44,6 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/educash_text"
                 android:text="Edu Cash"
                 android:layout_weight="3"
                 android:gravity="center"
