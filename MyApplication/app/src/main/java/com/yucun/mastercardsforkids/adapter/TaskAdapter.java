@@ -1,16 +1,18 @@
 package com.yucun.mastercardsforkids.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.yucun.mastercardsforkids.R;
-import com.yucun.mastercardsforkids.fragment.AlertDialogFragment;
 import com.yucun.mastercardsforkids.model.UserTask;
 
 import java.util.List;
@@ -52,10 +54,27 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(TaskAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(final TaskAdapter.ViewHolder viewHolder, int position) {
         UserTask userTask=userTaskList.get(position);
         viewHolder.taskName.setText(userTask.getTaskName());
         viewHolder.taskStatus.setChecked(userTask.getStatus());
+        viewHolder.taskStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    new AlertDialog.Builder(context)
+                            .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    viewHolder.taskStatus.setChecked(true);
+                                }
+                            }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                                    viewHolder.taskStatus.setChecked(false);
+                        }
+                    }).setMessage("DID YOU DO A GOOD JOB ?").show();
+                }
+            }
+        });
     }
 
     @Override
@@ -70,14 +89,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            taskStatus.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(!taskStatus.isChecked()){
-                        AlertDialogFragment.newInstance();
-                    }
-                }
-            });
+
         }
     }
     public static class TaskAdapterBuilder{
