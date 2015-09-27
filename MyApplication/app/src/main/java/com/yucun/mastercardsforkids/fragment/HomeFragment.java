@@ -28,8 +28,6 @@ public class HomeFragment extends Fragment {
     TextView taskText;
     @Bind(R.id.goal_text)
     TextView goalText;
-    @Bind(R.id.avatar)
-    ImageView avatar;
     @Bind(R.id.wallet_text)
     TextView walletText;
     @Bind(R.id.transaction_text)
@@ -73,9 +71,13 @@ public class HomeFragment extends Fragment {
         scan_text.setTypeface(font);
 
         task_button.setButtonColor(getResources().getColor(R.color.brown_500));
+        task_button.setImageResource(R.drawable.task_icon);
         wallet_button.setButtonColor(getResources().getColor(R.color.brown_500));
+        wallet_button.setImageResource(R.drawable.wallet_icon);
         goal_button.setButtonColor(getResources().getColor(R.color.brown_500));
+        goal_button.setImageResource(R.drawable.goals);
         transaction_button.setButtonColor(getResources().getColor(R.color.brown_500));
+        transaction_button.setImageResource(R.drawable.transaction);
         scan_button.setButtonColor(getResources().getColor(R.color.brown_500));
 
         task_button.playShowAnimation();
