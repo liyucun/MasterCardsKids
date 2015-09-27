@@ -1,9 +1,12 @@
 package com.yucun.mastercardsforkids.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -18,6 +21,9 @@ import com.yucun.mastercardsforkids.model.Task;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.card.payment.CardIOActivity;
+import io.card.payment.CreditCard;
 
 public class MainActivity extends AppCompatActivity {
 
