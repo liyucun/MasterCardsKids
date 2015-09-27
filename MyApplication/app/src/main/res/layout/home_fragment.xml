@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/yellow_background">
+    android:background="@drawable/home_background">
 
     <RelativeLayout
         android:id="@+id/profile_area"
