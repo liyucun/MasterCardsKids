@@ -1,6 +1,7 @@
 package com.yucun.mastercardsforkids.fragment;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.software.shell.fab.ActionButton;
 import com.yucun.mastercardsforkids.R;
+import com.yucun.mastercardsforkids.activity.EarnMoneyActivity;
 import com.yucun.mastercardsforkids.activity.MainActivity;
 
 import butterknife.Bind;
@@ -70,11 +72,11 @@ public class HomeFragment extends Fragment {
         transactionText.setTypeface(font);
         scan_text.setTypeface(font);
 
-        task_button.setButtonColor(getResources().getColor(R.color.fab_material_purple_500));
-        wallet_button.setButtonColor(getResources().getColor(R.color.fab_material_purple_500));
-        goal_button.setButtonColor(getResources().getColor(R.color.fab_material_purple_500));
-        transaction_button.setButtonColor(getResources().getColor(R.color.fab_material_purple_500));
-        scan_button.setButtonColor(getResources().getColor(R.color.fab_material_purple_500));
+        task_button.setButtonColor(getResources().getColor(R.color.brown_500));
+        wallet_button.setButtonColor(getResources().getColor(R.color.brown_500));
+        goal_button.setButtonColor(getResources().getColor(R.color.brown_500));
+        transaction_button.setButtonColor(getResources().getColor(R.color.brown_500));
+        scan_button.setButtonColor(getResources().getColor(R.color.brown_500));
 
         task_button.playShowAnimation();
 
@@ -123,6 +125,12 @@ public class HomeFragment extends Fragment {
                         .add(R.id.container, TransactionFragment.instantiate(getActivity(), TransactionFragment.class.getName()))
                         .addToBackStack("home")
                         .commit();
+            }
+        });
+        scan_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), EarnMoneyActivity.class));
             }
         });
     }

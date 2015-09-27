@@ -10,29 +10,25 @@
         android:id="@+id/profile_area"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3">
+        android:layout_weight="3"
+        android:layout_marginBottom="30dp">
 
-        <ImageView
-            android:id="@+id/avatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_margin="30dp"
-            android:src="@drawable/default_profile" />
 
         <TextView
+            android:layout_centerInParent="true"
             android:id="@+id/profile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:layout_toRightOf="@+id/avatar"
+            android:layout_margin="20dp"
             android:gravity="center"
             android:text="Nelly"
             android:textSize="40dp" />
     </RelativeLayout>
 
     <LinearLayout
+        android:layout_weight="5"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -54,8 +50,8 @@
                 android:id="@+id/task_text"
                 android:layout_below="@id/task_button"
                 android:text="Tasks"
-                android:textSize="30dp"
-                android:textColor="@android:color/holo_purple"
+                android:textSize="20dp"
+                android:textColor="@color/brown_500"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -73,6 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/fab_margin"
                 android:layout_marginBottom="@dimen/fab_margin"
+
                 android:layout_centerInParent="true"
                 />
 
@@ -80,8 +77,8 @@
                 android:id="@+id/wallet_text"
                 android:layout_below="@id/wallet_button"
                 android:text="Wallet"
-                android:textSize="30dp"
-                android:textColor="@android:color/holo_purple"
+                android:textSize="20dp"
+                android:textColor="@color/brown_500"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -114,8 +111,8 @@
                 android:layout_below="@id/goal_button"
                 android:id="@+id/goal_text"
                 android:text="Goals"
-                android:textSize="30dp"
-                android:textColor="@android:color/holo_purple"
+                android:textSize="20dp"
+                android:textColor="@color/brown_500"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -140,8 +137,8 @@
                 android:layout_below="@id/transaction_button"
                 android:id="@+id/transaction_text"
                 android:text="Transaction"
-                android:textSize="30dp"
-                android:textColor="@android:color/holo_purple"
+                android:textSize="20dp"
+                android:textColor="@color/brown_500"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -168,8 +165,8 @@
             android:layout_below="@id/scan_button"
             android:id="@+id/scan_text"
             android:text="Scan"
-            android:textSize="30dp"
-            android:textColor="@android:color/holo_purple"
+            android:textSize="20dp"
+            android:textColor="@color/brown_500"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
