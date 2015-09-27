@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.yucun.mastercardsforkids.R;
+import com.yucun.mastercardsforkids.activity.MainActivity;
 import com.yucun.mastercardsforkids.model.Goal;
 
 import java.util.List;
@@ -23,7 +24,9 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.ViewHolder> 
     private GoalsAdapter(GoalsAdapterBuilder goalsAdapterBuilder){
         this.context=goalsAdapterBuilder.getContext();
         this.goals=goalsAdapterBuilder.getGoals();
+        this.budget=goalsAdapterBuilder.getBudget();
     }
+    float budget;
     Context context;
     List<Goal> goals;
     @Override
@@ -54,7 +57,7 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.ViewHolder> 
         holder.goalName.setText(goal.getName());
         holder.goalAmount.setText(Integer.toString(goal.getAmount()));
         holder.goalProgress.setMax(100);
-        holder.goalProgress.setProgress(50);
+        holder.goalProgress.setProgress((int)(goal.getAmount()-budget)/100);
 
     }
 
@@ -78,6 +81,7 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.ViewHolder> 
     public static class GoalsAdapterBuilder{
         private Context context;
         private List<Goal> goals;
+        private float budget=0.0f;
         public static GoalsAdapterBuilder newInstance(){return new GoalsAdapterBuilder();}
 
         public Context getContext() {
@@ -86,6 +90,15 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.ViewHolder> 
 
         public GoalsAdapterBuilder setContext(Context context) {
             this.context = context;
+            return this;
+        }
+
+        public float getBudget() {
+            return budget;
+        }
+
+        public GoalsAdapterBuilder setBudget(float budget) {
+            this.budget = budget;
             return this;
         }
 

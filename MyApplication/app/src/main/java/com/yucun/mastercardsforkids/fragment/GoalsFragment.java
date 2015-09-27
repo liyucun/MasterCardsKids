@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yucun.mastercardsforkids.R;
+import com.yucun.mastercardsforkids.activity.MainActivity;
 import com.yucun.mastercardsforkids.adapter.GoalsAdapter;
 import com.yucun.mastercardsforkids.model.Goal;
 
@@ -24,6 +25,7 @@ import butterknife.ButterKnife;
  * Created by jianhuizhu on 15-09-26.
  */
 public class GoalsFragment extends Fragment {
+    private float budget=0.0f;
     @Bind(R.id.goals_list)
     RecyclerView goalsList;
     private List<Goal> goals;
@@ -43,8 +45,10 @@ public class GoalsFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.goals_fragment,container,false);
-        ButterKnife.bind(this,view);
-        createDummyGoals();
+        ButterKnife.bind(this, view);
+        //createDummyGoals();
+        this.goals=((MainActivity)getActivity()).getProfile().getGoals();
+        this.budget=((MainActivity)getActivity()).getProfile().getAllowance();
         return view;
     }
 
@@ -54,6 +58,7 @@ public class GoalsFragment extends Fragment {
         GoalsAdapter goalsAdapter=GoalsAdapter
                 .GoalsAdapterBuilder.newInstance()
                 .setGoals(goals)
+                .setBudget(this.budget)
                 .setContext(getActivity())
                 .build();
         goalsList.setLayoutManager(new LinearLayoutManager(getActivity()));

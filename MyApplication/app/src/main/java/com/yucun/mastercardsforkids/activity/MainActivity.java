@@ -1,6 +1,9 @@
 package com.yucun.mastercardsforkids.activity;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,6 +18,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.yucun.mastercardsforkids.R;
+import com.yucun.mastercardsforkids.fragment.GoalsFragment;
 import com.yucun.mastercardsforkids.model.Goal;
 import com.yucun.mastercardsforkids.model.Profile;
 import com.yucun.mastercardsforkids.model.Task;
@@ -26,8 +30,12 @@ import io.card.payment.CardIOActivity;
 import io.card.payment.CreditCard;
 
 public class MainActivity extends AppCompatActivity {
-
-    Profile profile;
+    Activity activity=this;
+    private ProgressDialog progressDialog;
+    public static Profile profile;
+    public Profile getProfile(){
+        return profile;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
 
         profile = new Profile();
         // need add progress bar
+        Handler handler=new Handler();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressDialog = ProgressDialog.show(activity, null, "Loading...", true, false);
+                    }
+                });
         setupUserProfile();
 
     }
@@ -47,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
 
-                if(e == null){
+                if (e == null) {
                     ParseObject rawProfile = list.get(0);
 
                     profile.setAllowance((int) rawProfile.getNumber("allowance"));
@@ -56,42 +71,46 @@ public class MainActivity extends AppCompatActivity {
                     profile.setObjectId(rawProfile.getObjectId());
                     ParseRelation<ParseObject> goals = rawProfile.getRelation("goals");
 
-                    try{
+                    try {
                         List<ParseObject> raw_goal_list = goals.getQuery().find();
                         List<Goal> goal_list = new ArrayList<Goal>(raw_goal_list.size());
 
-                        for(ParseObject rawGoal : raw_goal_list){
+                        for (ParseObject rawGoal : raw_goal_list) {
                             Goal goal = new Goal(rawGoal.getObjectId(), rawGoal.getString("name"), (int) rawGoal.getNumber("amount"));
                             goal_list.add(goal);
                         }
 
                         profile.setGoals(goal_list);
 
-                    }catch(ParseException ex){
+                    } catch (ParseException ex) {
 
                     }
 
                     ParseRelation<ParseObject> tasks = rawProfile.getRelation("tasks");
 
-                    try{
+                    try {
                         List<ParseObject> raw_task_list = goals.getQuery().find();
                         List<Task> task_list = new ArrayList<Task>(raw_task_list.size());
 
-                        for(ParseObject rawTask : raw_task_list){
+                        for (ParseObject rawTask : raw_task_list) {
                             Task task = new Task(rawTask.getObjectId(), rawTask.getString("name"));
                             task_list.add(task);
                         }
 
                         profile.setTasks(task_list);
 
-                    }catch(ParseException ex){
+                    } catch (ParseException ex) {
 
                     }
 
-                }else{
+                } else {
                     // error happened
                 }
-
+                progressDialog.dismiss();
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.container, GoalsFragment.instantiate(activity,GoalsFragment.class.getName()))
+                        .commit();
             }
         });
     }

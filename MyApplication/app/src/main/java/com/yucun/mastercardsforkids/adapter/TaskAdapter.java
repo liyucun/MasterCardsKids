@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.yucun.mastercardsforkids.R;
+import com.yucun.mastercardsforkids.model.Task;
 import com.yucun.mastercardsforkids.model.UserTask;
 
 import java.util.List;
@@ -25,7 +26,7 @@ import butterknife.ButterKnife;
  */
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     private Context context;
-    private List<UserTask> userTaskList;
+    private List<Task> userTaskList;
     private TaskAdapter(TaskAdapterBuilder builder){
         this.context=builder.getContext();
         this.userTaskList=builder.getUserTaskList();
@@ -55,9 +56,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(final TaskAdapter.ViewHolder viewHolder, int position) {
-        UserTask userTask=userTaskList.get(position);
-        viewHolder.taskName.setText(userTask.getTaskName());
-        viewHolder.taskStatus.setChecked(userTask.getStatus());
+        Task userTask=userTaskList.get(position);
+        viewHolder.taskName.setText(userTask.getName());
+        //viewHolder.taskStatus.setChecked(userTask.get);
         viewHolder.taskStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -94,7 +95,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     }
     public static class TaskAdapterBuilder{
         private Context context;
-        private List<UserTask> userTaskList;
+        private List<Task> userTaskList;
         public static TaskAdapterBuilder newinstance(){
             return new TaskAdapterBuilder();
         }
@@ -103,7 +104,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             return context;
         }
 
-        public List<UserTask> getUserTaskList() {
+        public List<Task> getUserTaskList() {
             return userTaskList;
         }
 
@@ -112,7 +113,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             return this;
         }
 
-        public TaskAdapterBuilder setUserTaskList(List<UserTask> userTaskList) {
+        public TaskAdapterBuilder setUserTaskList(List<Task> userTaskList) {
             this.userTaskList = userTaskList;
             return this;
         }

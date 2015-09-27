@@ -9,12 +9,11 @@
     android:text="Name to be loaded"
     android:gravity="center"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="60dp"/>
+    android:layout_height="wrap_content"/>
     <LinearLayout
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/goal_name"
-        android:layout_margin="30dp"
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -30,7 +29,10 @@
             android:text="To be loaded"
             android:textSize="15sp"
             android:layout_marginLeft="10dp"
-            android:layout_weight="2"
+            android:layout_marginRight="15dp"
+            android:textAlignment="viewEnd"
+            android:gravity="end"
+            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
     </LinearLayout>
