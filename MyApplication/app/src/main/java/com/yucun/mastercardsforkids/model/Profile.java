@@ -36,4 +36,52 @@ public class Profile {
         this.tasks = null;
         this.goals = null;
     }
+
+    public String getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
+    }
+
+    public int getAllowance() {
+        return allowance;
+    }
+
+    public void setAllowance(int allowance) {
+        this.allowance = allowance;
+    }
+
+    public int getEducash() {
+        return educash;
+    }
+
+    public void setEducash(int educash) {
+        this.educash = educash;
+    }
+
+    public String getCard() {
+        return card;
+    }
+
+    public void setCard(String card) {
+        this.card = card;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public List<Goal> getGoals() {
+        return goals;
+    }
+
+    public void setGoals(List<Goal> goals) {
+        this.goals = goals;
+    }
 }
