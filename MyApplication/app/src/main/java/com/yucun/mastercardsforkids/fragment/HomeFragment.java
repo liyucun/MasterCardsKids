@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.software.shell.fab.ActionButton;
 import com.yucun.mastercardsforkids.R;
 import com.yucun.mastercardsforkids.activity.MainActivity;
 
@@ -41,6 +42,20 @@ public class HomeFragment extends Fragment {
     RelativeLayout transactionArea;
     @Bind(R.id.profile_name)
     TextView profile_name;
+    @Bind(R.id.scan_text)
+    TextView scan_text;
+
+    @Bind(R.id.task_button)
+    ActionButton task_button;
+    @Bind(R.id.wallet_button)
+    ActionButton wallet_button;
+    @Bind(R.id.goal_button)
+    ActionButton goal_button;
+    @Bind(R.id.transaction_button)
+    ActionButton transaction_button;
+    @Bind(R.id.scan_button)
+    ActionButton scan_button;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,6 +65,18 @@ public class HomeFragment extends Fragment {
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/font.ttf");
         profile_name.setTypeface(font);
         taskText.setTypeface(font);
+        goalText.setTypeface(font);
+        walletText.setTypeface(font);
+        transactionText.setTypeface(font);
+        scan_text.setTypeface(font);
+
+        task_button.setButtonColor(getResources().getColor(R.color.fab_material_purple_500));
+        wallet_button.setButtonColor(getResources().getColor(R.color.fab_material_purple_500));
+        goal_button.setButtonColor(getResources().getColor(R.color.fab_material_purple_500));
+        transaction_button.setButtonColor(getResources().getColor(R.color.fab_material_purple_500));
+        scan_button.setButtonColor(getResources().getColor(R.color.fab_material_purple_500));
+
+        task_button.playShowAnimation();
 
         return view;
     }
