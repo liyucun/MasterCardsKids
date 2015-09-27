@@ -16,6 +16,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.yucun.mastercardsforkids.R;
 import com.yucun.mastercardsforkids.activity.MainActivity;
 import com.yucun.mastercardsforkids.adapter.GoalsAdapter;
@@ -79,31 +80,22 @@ public class GoalsFragment extends Fragment {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 if (e == null) {
-                    ParseObject rawProfile = list.get(0);
+                    final ParseObject rawProfile = list.get(0);
 
-                    // change allowance
-                    if(goal.isEnabled()){
-                        int new_allowance = rawProfile.getInt("allowance") - goal.getAmount();
-                        rawProfile.put("allowance", new_allowance);
-                    }else{
-                        int new_allowance = rawProfile.getInt("allowance") + goal.getAmount();
-                        rawProfile.put("allowance", new_allowance);
-                    }
+                    // add goal
+                    final ParseRelation<ParseObject> goals = rawProfile.getRelation("goals");
 
-                    // set goal enabled to false
-                    ParseRelation<ParseObject> goals = rawProfile.getRelation("goals");
-
-                    try{
-                        for(ParseObject object : goals.getQuery().find()){
-                            if(object.getObjectId().equals(goal.getObjectId())){
-                                object.put("enabled", !goal.isEnabled());
-                                object.saveInBackground();
-                                break;
-                            }
+                    final ParseObject new_goal = new ParseObject("Goal");
+                    new_goal.put("name", goal.getName());
+                    new_goal.put("amount", goal.getAmount());
+                    new_goal.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            goals.add(new_goal);
+                            rawProfile.saveInBackground();
                         }
-                    }catch (ParseException exception){
+                    });
 
-                    }
                 }
             }
         });
