@@ -11,6 +11,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseRelation;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.squareup.picasso.Picasso;
 import com.yucun.mastercardsforkids.R;
 import com.yucun.mastercardsforkids.model.Task;
@@ -56,21 +63,25 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(final TaskAdapter.ViewHolder viewHolder, int position) {
-        Task userTask=userTaskList.get(position);
+        final Task userTask=userTaskList.get(position);
         viewHolder.taskName.setText(userTask.getName());
-        viewHolder.taskStatus.setChecked(userTask.getEnabled());
+        viewHolder.taskStatus.setChecked(!userTask.getEnabled());
         viewHolder.taskStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
+                if (!isChecked) {
                     new AlertDialog.Builder(context)
                             .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     viewHolder.taskStatus.setChecked(true);
+                                    userTask.setEnabled(false);
+                                    changeTaskStatus(userTask);
                                 }
                             }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                                     viewHolder.taskStatus.setChecked(false);
+                            userTask.setEnabled(true);
+                            changeTaskStatus(userTask);
                         }
                     }).setMessage("DID YOU DO A GOOD JOB ?").show();
                 }
@@ -120,5 +131,49 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         public TaskAdapter build(){
             return new TaskAdapter(this);
         }
+    }
+
+
+    public void changeTaskStatus(final Task task){
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Profile");
+        query.whereEqualTo("user", ParseUser.getCurrentUser());
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+                    ParseObject rawProfile = list.get(0);
+
+                    // change allowance
+                    if(task.getEnabled()){
+                        int new_allowance = rawProfile.getInt("allowance") + task.getAmount();
+                        rawProfile.put("allowance", new_allowance);
+                    }else{
+                        int new_allowance = rawProfile.getInt("allowance") - task.getAmount();
+                        rawProfile.put("allowance", new_allowance);
+                    }
+
+
+                    // set task enabled to false
+                    ParseRelation<ParseObject> tasks = rawProfile.getRelation("tasks");
+
+                    try{
+                        for(ParseObject object : tasks.getQuery().find()){
+                            if(object.getObjectId().equals(task.getObjectId())){
+                                object.put("enabled", !task.getEnabled());
+                                object.saveInBackground();
+                                break;
+                            }
+                        }
+                    }catch (ParseException exception){
+
+                    }
+
+                    rawProfile.saveInBackground();
+                }else{
+
+                }
+            }
+        });
     }
 }
