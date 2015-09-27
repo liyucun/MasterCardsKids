@@ -100,7 +100,7 @@ echo '        <div class="col-lg-4 col-lg-offset-4">';
              $goal = $goals[$i];
              $name = $goal->get('name');
              $amount = $goal->get('amount');
-echo '<br><img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">';
+echo '<br><img class="img-thumbnail" src="beelogo.jpg" alt="Generic placeholder image" width="140" height="140">';
 //             echo "<h2>" . $name . "</h2>";
              echo "<br><br>Goal: " . $name . "<br>";
              echo "Amount: " . $amount . "<br>";
@@ -111,18 +111,27 @@ echo '<br><img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd
              </div>
             </div>
 
-<script type="text/javascript" src="https://www.simplify.com/commerce/simplify.pay.js"></script>
-     <button data-sc-key="sbpb_YzY0YWIwZWEtMmI1ZC00MjRiLWE1YTgtZjNhY2FmNGY5YTdj"
-        data-name="BIZYBEES"
-        data-description="description"
-        data-reference="99999"
-        data-amount="<?php echo $amount * 100; ?>"
-        data-color="#12B830"
-        data-masterpass="true">
-        Purchase
-     </button>
-<?php
+<?php if (false !== stripos($name, 'bizybees')) {
+
+echo '<script type="text/javascript" src="https://www.simplify.com/commerce/simplify.pay.js"></script>' . 
+     '<button data-sc-key="sbpb_YzY0YWIwZWEtMmI1ZC00MjRiLWE1YTgtZjNhY2FmNGY5YTdj"' . 
+     '   data-name="BIZYBEES"' .
+     '   data-description="' . $name . '"' .
+     '   data-reference="99999"' .
+     '   data-amount="' . $amount * 100 . '"' .
+     '   data-color="#12B830"' .
+     '   data-masterpass="true">' .
+     '   Purchase' .
+     '</button>' ;
+
              echo "<br><br>";
+
+}
+
+?>
+
+<?php
+//             echo "<br><br>";
             }
 echo '</div>';
 echo '</div>';

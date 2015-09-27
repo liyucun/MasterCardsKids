@@ -1,6 +1,7 @@
 package com.yucun.mastercardsforkids.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,9 +66,12 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/font.ttf");
         Goal goal=goals.get(position);
         holder.goalName.setText(goal.getName());
+        holder.goalName.setTypeface(font);
         holder.goalAmount.setText(Integer.toString(goal.getAmount()));
+        holder.goalAmount.setTypeface(font);
         holder.goalProgress.setMax(100);
         holder.goalProgress.setProgress((int)(goal.getAmount()-budget)/100);
 

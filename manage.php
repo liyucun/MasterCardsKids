@@ -135,7 +135,7 @@ if (!empty($_POST)) {
 
 
 
-<br><br>
+<br>
 
 
 <div class="list-group">
@@ -154,7 +154,7 @@ if (!empty($_POST)) {
 </form>
 
 
-<br><br><br>
+<br><br>
 
 
 <div class="list-group">
@@ -187,7 +187,8 @@ if (!empty($_POST)) {
             $object = $results[0];
             $user = $object->get("user");
             $username = $user->get("username");
-            echo '<option value="' . $value . '">' . $username . ' / ' . $value . '</option>';
+            $fakeValue = str_pad(substr($value, -4), strlen($value), '*', STR_PAD_LEFT);
+            echo '<option value="' . $value . '">' . $username . ' / ' . $fakeValue . '</option>';
            }
           }
          }

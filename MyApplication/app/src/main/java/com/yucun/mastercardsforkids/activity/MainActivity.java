@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                         List<Task> task_list = new ArrayList<Task>(raw_task_list.size());
 
                         for (ParseObject rawTask : raw_task_list) {
-                            Task task = new Task(rawTask.getObjectId(), rawTask.getString("name"),rawTask.getBoolean("enable"), rawTask.getInt("amount"));
+                            Task task = new Task(rawTask.getObjectId(), rawTask.getString("name"),rawTask.getBoolean("enabled"), rawTask.getInt("amount"));
                             task_list.add(task);
                         }
 

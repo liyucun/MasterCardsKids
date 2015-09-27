@@ -3,6 +3,7 @@ package com.yucun.mastercardsforkids.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,8 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.squareup.picasso.Picasso;
 import com.yucun.mastercardsforkids.R;
+import com.yucun.mastercardsforkids.activity.MainActivity;
+import com.yucun.mastercardsforkids.model.Profile;
 import com.yucun.mastercardsforkids.model.Task;
 import com.yucun.mastercardsforkids.model.UserTask;
 
@@ -32,11 +35,13 @@ import butterknife.ButterKnife;
  * Created by jianhuizhu on 15-09-26.
  */
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
+    private Profile profile;
     private Context context;
     private List<Task> userTaskList;
     private TaskAdapter(TaskAdapterBuilder builder){
         this.context=builder.getContext();
         this.userTaskList=builder.getUserTaskList();
+        this.profile=builder.getProfile();
     }
     @Override
     public TaskAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int i) {
@@ -63,8 +68,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(final TaskAdapter.ViewHolder viewHolder, int position) {
+        Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/font.ttf");
         final Task userTask=userTaskList.get(position);
         viewHolder.taskName.setText(userTask.getName());
+        viewHolder.taskName.setTypeface(font);
         viewHolder.taskStatus.setChecked(!userTask.getEnabled());
         viewHolder.taskStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -75,15 +82,22 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
                                 public void onClick(DialogInterface dialog, int id) {
                                     viewHolder.taskStatus.setChecked(true);
                                     userTask.setEnabled(false);
+                                    profile.setAllowance(profile.getAllowance()-userTask.getAmount());
                                     changeTaskStatus(userTask);
                                 }
                             }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                                     viewHolder.taskStatus.setChecked(false);
                             userTask.setEnabled(true);
+                            profile.setAllowance(profile.getAllowance()+userTask.getAmount());
                             changeTaskStatus(userTask);
                         }
                     }).setMessage("DID YOU DO A GOOD JOB ?").show();
+                }else{
+                    viewHolder.taskStatus.setChecked(false);
+                    userTask.setEnabled(true);
+                    profile.setAllowance(profile.getAllowance()+userTask.getAmount());
+                    changeTaskStatus(userTask);
                 }
             }
         });
@@ -107,6 +121,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     public static class TaskAdapterBuilder{
         private Context context;
         private List<Task> userTaskList;
+        private Profile profile;
         public static TaskAdapterBuilder newinstance(){
             return new TaskAdapterBuilder();
         }
@@ -128,6 +143,15 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             this.userTaskList = userTaskList;
             return this;
         }
+        public TaskAdapterBuilder setUserProfile(Profile profile){
+            this.profile=profile;
+            return this;
+        }
+
+        public Profile getProfile() {
+            return profile;
+        }
+
         public TaskAdapter build(){
             return new TaskAdapter(this);
         }

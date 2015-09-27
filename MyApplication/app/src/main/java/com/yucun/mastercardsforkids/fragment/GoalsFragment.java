@@ -1,6 +1,7 @@
 package com.yucun.mastercardsforkids.fragment;
 
 import android.app.Fragment;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -34,6 +36,8 @@ import butterknife.ButterKnife;
  */
 public class GoalsFragment extends Fragment {
     GoalsAdapter goalsAdapter;
+    @Bind(R.id.goals_title)
+    TextView goalsTitle;
     @Bind(R.id.floating_action_button)
     FloatingActionButton floatingActionButton;
     private float budget=0.0f;
@@ -66,6 +70,8 @@ public class GoalsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/font.ttf");
+        goalsTitle.setTypeface(font);
         goalsAdapter=GoalsAdapter
                 .GoalsAdapterBuilder.newInstance()
                 .setGoals(goals)
@@ -80,7 +86,7 @@ public class GoalsFragment extends Fragment {
             public void onClick(View v) {
                 getFragmentManager()
                         .beginTransaction()
-                        .add(R.id.container,AddGoalFragment.instantiate(getActivity(),AddGoalFragment.class.getName()))
+                        .add(R.id.container, AddGoalFragment.instantiate(getActivity(), AddGoalFragment.class.getName()))
                         .commit();
             }
         });
