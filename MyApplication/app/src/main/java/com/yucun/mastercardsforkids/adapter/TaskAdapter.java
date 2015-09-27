@@ -3,6 +3,7 @@ package com.yucun.mastercardsforkids.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,8 +64,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(final TaskAdapter.ViewHolder viewHolder, int position) {
+        Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/font.ttf");
         final Task userTask=userTaskList.get(position);
         viewHolder.taskName.setText(userTask.getName());
+        viewHolder.taskName.setTypeface(font);
         viewHolder.taskStatus.setChecked(!userTask.getEnabled());
         viewHolder.taskStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
