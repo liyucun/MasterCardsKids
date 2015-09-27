@@ -82,14 +82,14 @@ require __DIR__ . '/defaults.php';
            $results = $query->find();
            if (count($results) > 0 ) {
             $object = $results[0];
-            $educash = $object->get("educash");
+            $educash = $object->get("allowance");
             $user = $object->get("user");
             $username = $user->get("username");
             $relation = $object->getRelation("goals");
             $goals = $relation->getQuery()->find();
 
 echo '      <div class="row" style="text-align: center">';
-            echo "<h1>" . $username . "'s EduCash Balance: " . $educash . "<br>";
+            echo "<h1>" . $username . "'s Allowance: " . $educash . "<br>";
 //            echo "<h1>" . $username . "'s Goals<br>";
 echo '</div>';
 
