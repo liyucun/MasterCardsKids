@@ -100,7 +100,7 @@ echo '        <div class="col-lg-4 col-lg-offset-4">';
              $goal = $goals[$i];
              $name = $goal->get('name');
              $amount = $goal->get('amount');
-echo '<br><img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">';
+echo '<br><img class="img-thumbnail" src="beelogo.jpg" alt="Generic placeholder image" width="140" height="140">';
 //             echo "<h2>" . $name . "</h2>";
              echo "<br><br>Goal: " . $name . "<br>";
              echo "Amount: " . $amount . "<br>";
