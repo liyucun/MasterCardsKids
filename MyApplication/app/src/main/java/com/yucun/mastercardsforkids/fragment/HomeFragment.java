@@ -72,6 +72,7 @@ public class HomeFragment extends Fragment {
 
         task_button.setButtonColor(getResources().getColor(R.color.brown_500));
         task_button.setImageResource(R.drawable.task_icon);
+
         wallet_button.setButtonColor(getResources().getColor(R.color.brown_500));
         wallet_button.setImageResource(R.drawable.wallet_icon);
         goal_button.setButtonColor(getResources().getColor(R.color.brown_500));
