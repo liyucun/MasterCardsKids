@@ -58,7 +58,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     public void onBindViewHolder(final TaskAdapter.ViewHolder viewHolder, int position) {
         Task userTask=userTaskList.get(position);
         viewHolder.taskName.setText(userTask.getName());
-        //viewHolder.taskStatus.setChecked(userTask.get);
+        viewHolder.taskStatus.setChecked(userTask.getEnabled());
         viewHolder.taskStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
