@@ -39,14 +39,15 @@
             android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login"
             android:windowSoftInputMode="adjustResize|stateHidden" >
+
+        </activity>
+        <activity
+            android:name=".activity.EarnMoneyActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".activity.EarnMoneyActivity" >
         </activity>
 
         <!-- Activities responsible for gathering payment info -->

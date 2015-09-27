@@ -3,4 +3,29 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <EditText
+        android:id="@+id/card_number"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Credit Card Number"/>
+
+    <EditText
+        android:id="@+id/card_expire_date"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Credit Card Expire Date"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="click me"
+        android:onClick="onScanPress"/>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="submit"
+        android:onClick="requestCardToken"/>
+
 </LinearLayout>
