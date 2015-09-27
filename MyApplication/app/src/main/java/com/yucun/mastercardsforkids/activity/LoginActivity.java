@@ -26,35 +26,26 @@ public class LoginActivity extends Activity {
     EditText name;
     @Bind(R.id.password)
     EditText password;
-    Activity activity=this;
+    Activity activity = this;
     @Bind(R.id.confirm_login)
     Button confirmLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        confirmLogin.setOnClickListener(new View.OnClickListener() {
-            ProgressDialog progressDialog;
+        ParseUser.logInInBackground("julia", "julia", new LogInCallback() {
+            public void done(ParseUser user, ParseException e) {
 
-            @Override
-            public void onClick(View v) {
+                if (user != null) {
+                    // Hooray! The user is logged in.
 
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
-                ParseUser.logInInBackground("julia", "julia", new LogInCallback() {
-                    public void done(ParseUser user, ParseException e) {
-
-                        if (user != null) {
-                            // Hooray! The user is logged in.
-
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-
-                        } else {
-                            // Signup failed. Look at the ParseException to see what happened.
-                        }
-                    }
-                });
-
+                } else {
+                    // Signup failed. Look at the ParseException to see what happened.
+                }
             }
         });
 
