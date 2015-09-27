@@ -9,15 +9,18 @@ import com.parse.ParseObject;
 public class Task {
     String objectId;
     String name;
+    Boolean enabled;
 
-    public Task(String objectId, String name) {
+    public Task(String objectId, String name, Boolean enabled) {
         this.objectId = objectId;
         this.name = name;
+        this.enabled = enabled;
     }
 
     public Task() {
         this.objectId = "";
         this.name = "";
+        this.enabled = true;
     }
 
     public String getObjectId() {
@@ -34,5 +37,13 @@ public class Task {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 }
