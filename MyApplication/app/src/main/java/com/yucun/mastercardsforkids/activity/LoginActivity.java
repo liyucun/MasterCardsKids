@@ -33,14 +33,12 @@ public class LoginActivity extends Activity {
     Activity activity = this;
     @Bind(R.id.confirm_login)
     TextView confirmLogin;
-    @Bind(R.id.login)
-    ImageView login;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        Picasso.with(this).load(R.drawable.yellow_background).fit().into(login);
         Typeface font = Typeface.createFromAsset(this.getAssets(), "fonts/font.ttf");
         name.setTypeface(font);
         password.setTypeface(font);
@@ -60,33 +58,9 @@ public class LoginActivity extends Activity {
 //        });
 
         confirmLogin.setOnClickListener(new View.OnClickListener() {
-            ProgressDialog progressDialog;
             @Override
             public void onClick(View v) {
-                String mname=name.getText().toString();
-                String mpwd=password.getText().toString();
-                ParseUser.logInInBackground(mname, mpwd, new LogInCallback() {
-                    public void done(ParseUser user, ParseException e) {
-                        progressDialog.dismiss();
-                        if (user != null) {
-                            // Hooray! The user is logged in.
-
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-
-                        } else {
-                            // Signup failed. Look at the ParseException to see what happened.
-                        }
-                    }
-                });
-                Handler handler=new Handler();
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressDialog = ProgressDialog.show(activity, null, "Loading...", true, false);
-                    }
-                });
-
-//
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
 
 

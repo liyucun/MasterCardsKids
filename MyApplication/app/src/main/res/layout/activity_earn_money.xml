@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<FrameLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    style="@style/AppTheme"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <ImageView
+        android:id="@+id/earn"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,8 +17,6 @@
             <TextView
                 android:id="@+id/card_number_title"
                 android:layout_margin="20dp"
-                android:text="CARD NUMBER"
-                android:textColor="@android:color/primary_text_dark"
                 android:textSize="25sp"
 
                 android:layout_width="match_parent"
@@ -55,3 +62,4 @@
             android:text="SUBMIT" />
 
     </RelativeLayout>
+    </FrameLayout>

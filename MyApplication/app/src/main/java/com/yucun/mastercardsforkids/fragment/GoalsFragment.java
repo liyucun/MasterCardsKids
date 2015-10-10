@@ -45,8 +45,6 @@ public class GoalsFragment extends Fragment {
     private float budget=0.0f;
     @Bind(R.id.goals_list)
     RecyclerView goalsList;
-    @Bind(R.id.goal)
-    ImageView imageView;
     private List<Goal> goals;
     private void createDummyGoals(){
         this.goals = new ArrayList<>();
@@ -74,7 +72,6 @@ public class GoalsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Picasso.with(getActivity()).load(R.drawable.light_background).fit().into(imageView);
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/font.ttf");
         goalsTitle.setTypeface(font);
         goalsAdapter=GoalsAdapter

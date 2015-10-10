@@ -7,7 +7,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
 import com.yucun.mastercardsforkids.R;
 
 import butterknife.Bind;
@@ -19,6 +21,8 @@ import butterknife.ButterKnife;
 public class TransactionFragment extends Fragment {
     @Bind(R.id.transaction_list)
     RecyclerView transactionList;
+    @Bind(R.id.transaction)
+    ImageView i;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -30,5 +34,6 @@ public class TransactionFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Picasso.with(getActivity()).load(R.drawable.light_background).fit().into(i);
     }
 }

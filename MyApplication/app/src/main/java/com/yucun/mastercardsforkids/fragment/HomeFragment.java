@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.parse.ParseUser;
 import com.software.shell.fab.ActionButton;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -31,8 +32,7 @@ import butterknife.ButterKnife;
  * Created by jianhuizhu on 15-09-26.
  */
 public class HomeFragment extends Fragment {
-    @Bind(R.id.home)
-    ImageView home;
+
     @Bind(R.id.task_text)
     TextView taskText;
     @Bind(R.id.goal_text)
@@ -53,8 +53,6 @@ public class HomeFragment extends Fragment {
     TextView profile_name;
     @Bind(R.id.scan_text)
     TextView scan_text;
-    @Bind(R.id.home_background)
-    LinearLayout l;
     @Bind(R.id.task_button)
     ActionButton task_button;
     @Bind(R.id.wallet_button)
@@ -69,10 +67,11 @@ public class HomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.home_fragment,container,false);
+        View view = inflater.inflate(R.layout.home_fragment, container, false);
         ButterKnife.bind(this, view);
 
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/font.ttf");
+        profile_name.setText(ParseUser.getCurrentUser().getUsername());
         profile_name.setTypeface(font);
         taskText.setTypeface(font);
         goalText.setTypeface(font);
@@ -89,15 +88,13 @@ public class HomeFragment extends Fragment {
         transaction_button.setButtonColor(getResources().getColor(R.color.brown_500));
         transaction_button.setImageResource(R.drawable.abc_btn_rating_star_on_mtrl_alpha);
         scan_button.setButtonColor(getResources().getColor(R.color.brown_500));
-        scan_button.setButtonColor(getResources().getColor(R.color.brown_500));
-
+        scan_button.setImageResource(R.drawable.abc_btn_rating_star_on_mtrl_alpha);
         return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Picasso.with(getActivity()).load(R.drawable.home_background).fit().into(home);
         //((MainActivity)getActivity()).getProfile()
         taskArea.setOnClickListener(new View.OnClickListener() {
             @Override

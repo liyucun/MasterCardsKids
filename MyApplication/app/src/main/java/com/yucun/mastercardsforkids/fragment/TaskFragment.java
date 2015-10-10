@@ -44,8 +44,6 @@ public class TaskFragment extends Fragment {
     TextView taskTitle;
     @Bind(R.id.task_list)
     RecyclerView taskList;
-    @Bind(R.id.task)
-    ImageView imageView;
     TaskAdapter taskAdapter;
     @Nullable
     @Override
@@ -59,7 +57,6 @@ public class TaskFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Picasso.with(getActivity()).load(R.drawable.light_background).fit().into(imageView);
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/font.ttf");
         taskTitle.setTypeface(font);
         taskAdapter= TaskAdapter

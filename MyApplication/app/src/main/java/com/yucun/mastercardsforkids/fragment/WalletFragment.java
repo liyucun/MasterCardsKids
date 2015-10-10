@@ -21,8 +21,6 @@ import butterknife.ButterKnife;
  * Created by jianhuizhu on 15-09-26.
  */
 public class WalletFragment extends Fragment {
-    @Bind(R.id.wallet)
-    ImageView imageView;
     @Bind(R.id.wallet_text_title)
     TextView walletTitle;
     @Bind(R.id.allowance_text)
@@ -45,7 +43,6 @@ public class WalletFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
-        Picasso.with(getActivity()).load(R.drawable.light_background).fit().into(imageView);
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/font.ttf");
         allowanceRecord.setText(Integer.toString(((MainActivity) getActivity()).getProfile().getAllowance()));
         allowanceRecord.setTypeface(font);

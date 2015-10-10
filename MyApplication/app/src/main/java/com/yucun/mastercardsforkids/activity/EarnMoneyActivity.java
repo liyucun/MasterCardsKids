@@ -7,12 +7,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.simplify.android.sdk.Card;
 import com.simplify.android.sdk.CardToken;
 import com.simplify.android.sdk.Simplify;
+import com.squareup.picasso.Picasso;
 import com.yucun.mastercardsforkids.R;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import io.card.payment.CardIOActivity;
 import io.card.payment.CreditCard;
 
@@ -20,7 +24,8 @@ import io.card.payment.CreditCard;
  * Created by yucunli on 2015-09-26.
  */
 public class EarnMoneyActivity extends AppCompatActivity{
-
+    @Bind(R.id.earn)
+    ImageView imageView;
 
     public static int MY_SCAN_REQUEST_CODE = 10;
 
@@ -33,7 +38,8 @@ public class EarnMoneyActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_earn_money);
-
+        ButterKnife.bind(this);
+        Picasso.with(this).load(R.drawable.light_background).fit().into(imageView);
         card_number = (EditText) findViewById(R.id.card_number);
         card_expire_date = (EditText) findViewById(R.id.card_expire_date);
 

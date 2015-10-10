@@ -35,8 +35,6 @@ public class AddGoalFragment extends Fragment {
     EditText goalAmountEdit;
     @Bind(R.id.confirm_add_goal)
     TextView confirmAddGoal;
-    @Bind(R.id.add)
-    ImageView imageView;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,7 +46,6 @@ public class AddGoalFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Picasso.with(getActivity()).load(R.drawable.light_background).fit().into(imageView);
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/font.ttf");
         addGoalTitle.setTypeface(font);
         goalNameEdit.setTypeface(font);
