@@ -11,6 +11,7 @@ import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -24,7 +25,7 @@ import butterknife.ButterKnife;
 /**
  * Created by jianhuizhu on 15-09-27.
  */
-public class SplashScreenActivity extends Activity{
+public class SplashScreenActivity extends AppCompatActivity {
     @Bind(R.id.myImage)
     ImageView myImage;
     @Bind(R.id.container_splash_screen)

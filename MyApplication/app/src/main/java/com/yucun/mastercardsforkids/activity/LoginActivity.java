@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.LogInCallback;
 import com.parse.ParseException;
@@ -25,7 +26,8 @@ import com.yucun.mastercardsforkids.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends AppCompatActivity {
+    private ProgressDialog progressDialog;
     @Bind(R.id.name)
     EditText name;
     @Bind(R.id.password)
@@ -43,24 +45,33 @@ public class LoginActivity extends Activity {
         name.setTypeface(font);
         password.setTypeface(font);
         confirmLogin.setTypeface(font);
-//        ParseUser.logInInBackground("julia", "julia", new LogInCallback() {
-//            public void done(ParseUser user, ParseException e) {
-//
-//                if (user != null) {
-//                    // Hooray! The user is logged in.
-//
-//                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-//
-//                } else {
-//                    // Signup failed. Look at the ParseException to see what happened.
-//                }
-//            }
-//        });
+
 
         confirmLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                Handler handler=new Handler();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressDialog = ProgressDialog.show(activity, null, "Loading...", true, false);
+                    }
+                });
+                ParseUser.logInInBackground(name.getText().toString(), password.getText().toString(), new LogInCallback() {
+            public void done(ParseUser user, ParseException e) {
+
+                if (user != null) {
+                    // Hooray! The user is logged in.
+                    progressDialog.dismiss();
+                    startActivity(new Intent(activity, MainActivity.class));
+
+                } else {
+                    progressDialog.dismiss();
+                    // Signup failed. Look at the ParseException to see what happened.
+                    Toast.makeText(getApplication(),"Cannot find the user",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 
 

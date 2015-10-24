@@ -2,7 +2,7 @@
 <FrameLayout
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    style="@style/AppTheme"
+    style="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
     xmlns:android="http://schemas.android.com/apk/res/android" >
     <ImageView
         android:id="@+id/earn"

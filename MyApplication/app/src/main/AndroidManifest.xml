@@ -30,7 +30,7 @@
         android:allowBackup="true"
         android:icon="@drawable/app_icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
         android:largeHeap="true">
         <activity
             android:name=".activity.MainActivity"
@@ -53,7 +53,7 @@
         </activity>
         <activity
             android:name=".activity.EarnMoneyActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/Base.Theme.AppCompat">
 
         </activity>
 
